@@ -1,5 +1,4 @@
 <template>
-  add waste form
   <base-card>
     <form @submit.prevent="handleSubmit">
       <div>

@@ -4,7 +4,7 @@
         <signup-form v-if="mode==='signup'"></signup-form>
         <login-form v-else></login-form>
     </base-card>
-    <button @click="toggleMode">{{ mode==='login'?'Signup':'Login' }} Instead</button>
+    <base-button @click="toggleMode">{{mode==='login'?'Signup':'Login'}} Instead</base-button>
     </div>
 </template>
 <script>

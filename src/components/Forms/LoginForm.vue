@@ -13,7 +13,7 @@
             <p class="error-message" v-if="error">{{ error }}</p>
             
             <div>
-                <button type="submit">Login</button>
+                <base-button type="submit">Login</base-button>
             </div>
     </form>
 </template>

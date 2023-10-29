@@ -72,4 +72,62 @@ body{
 }
 
 
+.toast {
+  position: fixed;
+  top: 100px;
+  right: 10px;
+  background: white;
+  animation: slideInToast 3s ease;
+  padding: 1.2rem 1.6rem;
+  border: 1px solid black;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, .1);
+  z-index: 32;
+
+}
+
+.toast-msg {
+  font-weight: bold;
+  color : black
+}
+
+.toast-error {
+  color: red;
+  border: 1px solid red;
+  padding: 1.6rem;
+  background: rgba(241, 79, 14, 0.534) ;
+
+}
+
+.toast-info {
+  color: yellow;
+  border: 1px solid yellow;
+  padding: 1.6rem;
+  background: rgba(194, 230, 38, 0.719);
+}
+
+.toast-success {
+  color: green;
+  border: 1px solid green;
+  padding: 1.6rem;
+  background: rgba(19, 226, 64, 0.534);
+}
+
+@keyframes slideInToast {
+    0% {
+      /* opacity: 0; */
+      transform: translateY(-120%);
+    }
+    20% {
+      /* opacity: 1; */
+      transform: translateY(0);
+    }
+    90% {
+      /* opacity: 1; */
+      transform: translateY(0);
+    }
+    100% {
+      /* opacity: 0; */
+      transform: translateY(-120%);
+    }
+  }
 </style>

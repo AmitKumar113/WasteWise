@@ -15,8 +15,8 @@ export default {
         })
 
         if(!res.ok){
-            console.log('error encountered')
-            return ;
+            const error = new Error('Email is already registered!')
+            throw error
         }
         //storing data at Firebase realtime database at user folder 
         const response = await fetch(`https://wastewise-007-default-rtdb.firebaseio.com/users.json`, {
@@ -29,6 +29,8 @@ export default {
         if(!response.ok){
             //if any error occurs and user data is upload at users folder than we have to delete the user details from authentications too.
             //..
+            const error = new Error('Something went wrong!2')
+            throw error
         }
 
         const data = await response.json();
