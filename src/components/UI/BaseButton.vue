@@ -1,6 +1,6 @@
 <template>
-    <button v-if="!link" :disabled="disabled"><slot></slot></button>
-    <router-link v-else :to="to"><slot></slot></router-link>
+    <button v-if="!link" :disabled="disabled" class="base-button"><slot></slot></button>
+    <router-link v-else :to="to" class="base-button"><slot></slot></router-link>
 </template>
 
 <script>
@@ -30,7 +30,7 @@ export default {
 </script>
 
 <style scoped>
-button{
+.base-button{
     padding: 8px 8px;
     background-color: #6372d9;
     font-family: 'Courier New', Courier, monospace;
@@ -41,13 +41,15 @@ button{
     outline: 1px solid white;
     outline-offset: -2px;
     cursor: pointer;
+    margin: 1rem;
+    text-decoration: none;
 }
 
-button:hover{
+.base-button:hover{
     outline-offset: -3px;
 }
 
-button:disabled{
+.base-button:disabled{
     outline-offset: -2px;
     cursor: not-allowed;
     opacity: 0.7;

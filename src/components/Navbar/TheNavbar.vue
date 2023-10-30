@@ -7,6 +7,7 @@
             <router-link to="/locator" class="btn">Locator</router-link>
             <router-link to="/e-waste" class="btn">E-waste</router-link>
             <router-link to="/about" class="btn">About</router-link>
+            <router-link to="/management" class="btn" v-if="isLoggedin && role==='recycler'">Manage</router-link>
         </div>
         <div>
             <router-link to="/auth" class="btn" v-if="!isLoggedin">Login</router-link>
@@ -28,6 +29,9 @@ export default {
         UserName(){
             console.log(this.$store)
             return this.$store.getters.getUserEmail
+        },
+        role(){
+            return this.$store.getters.getUser.role
         }
     }
 }

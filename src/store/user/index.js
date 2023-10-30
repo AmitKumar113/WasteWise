@@ -7,9 +7,9 @@ export default {
     state(){
         return {
             id: null,
-            // firstname: '',
-            // lastname: '',
             email: '',
+            name: '',
+            address: {},
             role: null,
         }
     },

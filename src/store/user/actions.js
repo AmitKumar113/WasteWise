@@ -1,5 +1,7 @@
 
 import router from '../../router'
+import store from '../../store'
+
 export default {
     async signup(context, payload){
         //signing up at Firebase Authentication 
@@ -56,13 +58,11 @@ export default {
         }
 
         const data = await res.json()
-        console.log(data.idToken)
+        // console.log(data.idToken)
 
         localStorage.setItem('idToken', data.idToken)
         localStorage.setItem('localId', data.localId)
         context.dispatch('fetchUserDetails', { email: data.email })
-
-        // context.commit('setUser', data)
     },
     
     async fetchUserDetails(context, payload){
@@ -82,13 +82,16 @@ export default {
                 reqUser.id = key
                 reqUser.email = users[key].email;
                 reqUser.role = users[key].role;
+                reqUser.name = users[key].name
+                reqUser.address = users[key].address
                 break;
             }
         }
 
         // const user = users.filter(user => user.email===payload.email )
-        // console.log(reqUser)
-        context.commit('setUser', reqUser)
+        await context.commit('setUser', reqUser)
+        console.log('after:  ' + store.getters.getUserId)
+        context.dispatch('fetchUserWasteList', {user: store.getters.getUserId})
     },
 
     async autoLogin(context){
@@ -108,7 +111,8 @@ export default {
         const data = await res.json();
 
         context.dispatch('fetchUserDetails', { email: data.users[0].email })
-        
+        // context.dispatch('fetchUserWasteList', )
+        // console.log(first)
     },
 
     logout(context){

@@ -5,16 +5,23 @@ import store from './store/index'
 import TheShop from './pages/TheShop.vue'
 import NotFound from './pages/NotFound.vue'
 import UserAuth from './pages/UserAuth.vue'
-import TheLocator from './pages/TheLocator.vue'
+import TheLocator from './pages/waste/TheLocator.vue'
 import TheAbout from './pages/TheAbout.vue'
 import UserProfile from './pages/UserProfile.vue'
 import ProductDetails from './pages/ProductDetails.vue'
-import ManageWaste from './pages/ManageWaste.vue'
+import ManageWaste from './pages/waste/ManageWaste.vue'
+import RecyclerSection from './pages/waste/RecyclerSection.vue'
+
 import AddProductForm from './components/Forms/AddProduct.vue'
 import AddWaste from './components/Forms/AddWaste.vue'
 import MyAccount from './components/Profile/MyAccount.vue'
 import CreditPoints from './components/Profile/CreditPoints.vue'
 import MyOrders from './components/Profile/MyOrders.vue'
+import ScheduleVisit from './components/Waste/ScheduleVisit.vue'
+import AreaOverview from './components/Waste/AreaOverview.vue'
+
+
+
 
 const router =  createRouter({
     history: createWebHistory(),
@@ -30,8 +37,14 @@ const router =  createRouter({
         
         //e-waste management related routes
         {path: '/locator', component: TheLocator },
-        {path: '/e-waste', component: ManageWaste },
-        {path: '/e-waste/add-waste', component: AddWaste },
+        {path: '/e-waste', component: ManageWaste, meta : { reqLogin: true } },
+        {path: '/e-waste/add-waste', component: AddWaste, meta : { reqLogin: true } },
+        {path: '/management', component: RecyclerSection, meta : { reqLogin: true }, children: [
+            {path: '', redirect: '/management/area-overview' },
+            {path: 'area-overview', component: AreaOverview },
+            {path: 'schedule-visit', component: ScheduleVisit },
+            
+     ] },
         
 
         {path: '/about', component: TheAbout },
@@ -49,9 +62,9 @@ const router =  createRouter({
     router.beforeEach(function(to, from, next){
         if(to.meta.reqNoLogin && store.getters.getUserId)
             next('/shop')
-        if(to.meta.reqLogin && !store.getters.getUserId)
+        else if(to.meta.reqLogin && !store.getters.getUserId)
             next('/auth')
-        next()
+        else next()
     })
 
 export default router
