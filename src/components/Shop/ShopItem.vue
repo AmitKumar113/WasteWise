@@ -1,12 +1,10 @@
 <template>
     <router-link :to="productUrl" class="routerLink">
-        <!-- <transition> -->
-            <base-card>
+            <div class="shop-item-container">
                 <p>{{ product.title }}</p>
                 <p>{{ product.description }}</p>
                 <p>{{ product.price }}</p>
-            </base-card>
-        <!-- </transition> -->
+            </div>
         </router-link>
 </template>
 
@@ -26,8 +24,20 @@ export default {
 .routerLink{
     text-decoration: none;
     color: black;
+    width: 25%;
+    margin: 1rem;
+    overflow: hidden;
 }
 
+
+.shop-item-container{
+    border: 1px solid grey;
+    height: 10rem;
+}
+
+p{
+    overflow: hidden;
+}
 /* .v-enter-from{
 opacity: 0;
 transform: translateY(-50px)

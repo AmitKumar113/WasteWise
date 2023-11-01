@@ -25,6 +25,8 @@ export default {
     created(){
         // this.$store.dispatch('loadProducts');
         this.$store.dispatch('autoLogin');
+        // this.$store.dispatch('loadProducts');
+
 
     }
 }

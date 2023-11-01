@@ -5,9 +5,9 @@
         <div id="btn-container">
             <router-link to="/shop" class="btn">Shop</router-link>
             <router-link to="/locator" class="btn">Locator</router-link>
-            <router-link to="/e-waste" class="btn">E-waste</router-link>
-            <router-link to="/about" class="btn">About</router-link>
+            <router-link to="/e-waste" class="btn" v-if="!isLoggedin || role!=='recycler'">E-waste</router-link>
             <router-link to="/management" class="btn" v-if="isLoggedin && role==='recycler'">Manage</router-link>
+            <router-link to="/about" class="btn">About</router-link>
         </div>
         <div>
             <router-link to="/auth" class="btn" v-if="!isLoggedin">Login</router-link>
@@ -22,12 +22,10 @@
 export default {
     computed: {
         isLoggedin(){
-            // console.log(this.$cld)
-            
             return this.$store.getters.getUserId
         },
         UserName(){
-            console.log(this.$store)
+            // console.log(this.$store)
             return this.$store.getters.getUserEmail
         },
         role(){

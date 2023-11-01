@@ -8,6 +8,9 @@ export default {
     getUserPincode(state){
         return state.address.pincode
     },
+    getUserRole(state){
+        return state.role
+    },
     getUser(state){
         return {
             id: state.id,

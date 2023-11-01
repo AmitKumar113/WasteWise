@@ -1,3 +1,4 @@
+import store from "../../store/index";
 
 export default {
     async addProduct(_, payload){
@@ -47,22 +48,18 @@ export default {
             products.push(item)
         }
 
-        context.commit('loadProducts', products)
+        await context.commit('setProducts', products)
     },
-    //  async addWaste(file){
-    //      console.log('add-waste');
-        //  const res = await fetch(`https://api.cloudinary.com/v1_1/dxwsqa8dh/upload`, {
-        //     method: 'POST',
-        //     body: JSON.stringify({
-        //         file: file,
-        //         // cloud_name: 'dxwsqa8dh',
-        //         upload_preset: 'ii15xbmg',
-        //         public_id: 'wastewise'
-        //                 })
-        //  })
 
-    //      const data = await res.json()
-    //      console.log(data)
+    async filterProducts(context, payload){
+        let filteredItems = [];
 
-    //  }
+        const allItems = store.getters.getAllProducts;
+        filteredItems = allItems.filter(item => item.title.includes(payload))
+        
+        console.log(allItems)
+        console.log('filteredItems')
+        console.log(filteredItems)
+        context.commit('setProducts', filteredItems)
+    }
 }

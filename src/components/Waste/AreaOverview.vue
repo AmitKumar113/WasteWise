@@ -11,8 +11,7 @@
                 <button @click="handleSearch">Search</button>
             </div>
             <div>
-                <!-- <li v-for="item in items" :key="item.description">{{ item.description }}</li> -->
-                <waste-item v-for="item in items" :key="item.user" :item="item"></waste-item>
+                <waste-item v-for="(item, index) in items" :key="index" :item="item"></waste-item>
             </div>
         </base-card>
     </section>
@@ -38,6 +37,7 @@ export default {
             store.dispatch('fetchPinWiseWasteList', { pincode: enteredPincode.value.value })
         }
 
+        
         const items = computed(function(){
             if(selectedStatus.value.value==='Initiated'){
                 return store.getters.getRecyclerInitiated

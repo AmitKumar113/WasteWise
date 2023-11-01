@@ -5,12 +5,28 @@
 
             {{ item.description }}
         </div>
+        <div class="btn" @click="handleMoveup" v-if="role==='recycler'">
+            next
+        </div>
     </div>
 </template>
 
 <script>
 export default{
-    props: ['item']
+    props: ['item'],
+    methods: {
+        handleMoveup(){
+            // console.log(this.item.status)
+            // console.log(this.item)
+            this.$store.dispatch('wasteMoveup', this.item)
+        }
+    },
+    computed: {
+        role(){
+            return this.$store.getters.getUserRole
+        }
+    }
+
 }
 </script>
 
@@ -30,5 +46,10 @@ export default{
 .description{
     border: 1px solid black;
     flex: 1
+}
+
+.btn{
+    border: 1px solid grey;
+    cursor: pointer;
 }
 </style>
